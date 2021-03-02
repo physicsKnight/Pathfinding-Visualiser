@@ -9,12 +9,14 @@ public:
     ~Window();
     bool isRunning() { return running; }
     void pollEvents();
+    void clear();
 
 private:
+    bool init();
     std::string title;
     int width = 800;
     int height = 600;
     bool running = true;
     SDL_Window* window = nullptr;
-    bool init();
+    SDL_Renderer* renderer = nullptr;
 };

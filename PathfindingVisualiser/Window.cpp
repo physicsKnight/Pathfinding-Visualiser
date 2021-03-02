@@ -6,12 +6,11 @@ Window::Window(const std::string& title, int width, int height) {
     this->width = width;
     this->height = height;
 
-    if (init() == false) {
-        running = false;
-    }
+    running = init();
 }
 
 Window::~Window() {
+    SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
     SDL_Quit();
 }
@@ -30,6 +29,12 @@ bool Window::init() {
         return false;
     }
 
+    renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_PRESENTVSYNC);
+    if (renderer == nullptr) {
+        std::cerr << "failed to create renderer" << std::endl;
+        return false;
+    }
+
     return true;
 }
 
@@ -44,4 +49,10 @@ void Window::pollEvents() {
             break;
         }
     }
+}
+
+void Window::clear() {
+    SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+    SDL_RenderClear(renderer);
+    SDL_RenderPresent(renderer);
 }
