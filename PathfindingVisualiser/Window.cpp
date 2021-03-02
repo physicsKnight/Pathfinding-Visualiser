@@ -45,6 +45,15 @@ void Window::pollEvents() {
         case SDL_QUIT:
             running = false;
             break;
+        case SDL_KEYDOWN:
+            switch (event.key.keysym.sym) {
+            case SDLK_ESCAPE:
+                running = false;
+                break;
+            }
+            break;
+        case SDL_MOUSEBUTTONDOWN:
+            break;
         default:
             break;
         }
