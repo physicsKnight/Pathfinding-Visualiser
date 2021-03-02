@@ -7,9 +7,8 @@ class Window {
 public:
     Window(const std::string &title, int width, int height);
     ~Window();
-    bool isRunning(){
-        return running;
-    }
+    bool isRunning() { return running; }
+    void pollEvents();
 
 private:
     std::string title;

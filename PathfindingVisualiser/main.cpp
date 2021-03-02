@@ -11,7 +11,7 @@ int main(int argc, char** argv) {
     Window window(title, width, height);
 
     while (window.isRunning()) {
-
+        window.pollEvents();
     }
     return 0;
 }
