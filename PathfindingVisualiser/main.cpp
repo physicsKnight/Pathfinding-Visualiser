@@ -2,6 +2,7 @@
 #include <string>
 #include <iostream>
 #include "Window.h"
+#include "config.h"
 
 int main(int argc, char** argv) {
     std::string title = "Pathfinding Visualiser";
