@@ -6,6 +6,7 @@ private:
     int column;
     int weight;
     int val;
+    int mode;
 
 public:
     Node(int row, int column, int val, int weight = 0) {

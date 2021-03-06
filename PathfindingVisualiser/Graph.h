@@ -9,6 +9,7 @@ private:
     void addEdges(int val, int r, int c);
 
 public:
-	void init();
+	Graph();
+	void reset();
 	void clear();
 };

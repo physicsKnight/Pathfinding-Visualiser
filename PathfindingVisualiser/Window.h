@@ -10,9 +10,12 @@ public:
     bool isRunning() { return running; }
     void pollEvents();
     void clear();
+    void update();
 
 private:
     bool init();
+    void handkleKeyboardEvent();
+
     std::string title;
     int width = 800;
     int height = 600;

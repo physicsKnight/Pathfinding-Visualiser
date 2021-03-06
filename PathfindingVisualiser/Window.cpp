@@ -1,4 +1,5 @@
 #include "Window.h"
+#include "config.h"
 #include <iostream>
 
 Window::Window(const std::string& title, int width, int height) {
@@ -46,17 +47,28 @@ void Window::pollEvents() {
             running = false;
             break;
         case SDL_KEYDOWN:
-            switch (event.key.keysym.sym) {
-            case SDLK_ESCAPE:
-                running = false;
-                break;
-            }
+            handkleKeyboardEvent();
             break;
         case SDL_MOUSEBUTTONDOWN:
             break;
         default:
             break;
         }
+    }
+}
+
+void Window::handkleKeyboardEvent() {
+    SDL_PumpEvents();
+    const Uint8* state = SDL_GetKeyboardState(NULL);
+    if (state[SDL_SCANCODE_W])
+        config::mode = config::WEIGHT;
+    else if (state[SDL_SCANCODE_B])
+        config::mode = config::BARRIER;
+    else if (state[SDL_SCANCODE_S])
+        config::mode = config::START;
+    else if (state[SDL_SCANCODE_E])
+        config::mode = config::END;
+    else if (state[SDL_SCANCODE_ESCAPE]) {
     }
 }
 

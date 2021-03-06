@@ -1,7 +1,7 @@
 #include "Graph.h"
 #include "Config.h"
 
-void Graph::init() {
+void Graph::Graph() {
     graph.resize(config::rows, std::vector<Node>(config::cols));
     adjList.resize(config::rows * config::cols);
 
@@ -21,6 +21,12 @@ void Graph::init() {
         }
     }
 }
+void Graph::reset() {
+    for (int i = 0; i < config::rows; ++i) {
+        for (int j = 0; j < config::cols; ++j) {
+        }
+    }
+ }
 
 bool inGraph(int row, int col) {
     return (row >= 0 && row < config::rows) &&
