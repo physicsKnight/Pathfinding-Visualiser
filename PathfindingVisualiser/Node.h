@@ -1,4 +1,5 @@
 #pragma once
+#include "Config.h"
 
 class Node {
 private:
@@ -6,7 +7,7 @@ private:
     int column;
     int weight;
     int val;
-    int mode;
+    int state = 0;
 
 public:
     Node(int row, int column, int val, int weight = 0) {
@@ -22,4 +23,5 @@ public:
     int getWeight() { return this->weight; }
 
     void setWeight(int weight) { this->weight = weight; }
+    void setState(int state) { this->state = state; }
 };

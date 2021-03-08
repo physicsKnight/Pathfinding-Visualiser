@@ -1,38 +1,46 @@
-#include "Window.h"
-#include "config.h"
 #include <iostream>
 
-Window::Window(const std::string& title, int width, int height) {
+#include "Window.h"
+#include "config.h"
+
+Window::Window(const std::string& title, int width, int height, Graph graph) {
     this->title = title;
     this->width = width;
     this->height = height;
+    this-> graph = graph;
 
     running = init();
+
+    graph = new Graph();
+    graphRenderer = new Renderer(renderer, window);
 }
 
 Window::~Window() {
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
     SDL_Quit();
+
+    delete graph;
+    delete graphRenderer;
 }
 
 
 bool Window::init() {
     if (SDL_Init(SDL_INIT_VIDEO) != 0) {
-        std::cerr << "failed to initialize" << std::endl;
+        std::cerr << "failed to initialize\n" << SDL_GetError() << std::endl;
         return false;
     }
 
-    window = SDL_CreateWindow(title.c_str(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,width, height, 0);
+    window = SDL_CreateWindow(title.c_str(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height, 0);
 
     if (window == nullptr) {
-        std::cerr << "failed to create window" << std::endl;
+        std::cerr << "failed to create window\n" << SDL_GetError() << std::endl;
         return false;
     }
 
     renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_PRESENTVSYNC);
     if (renderer == nullptr) {
-        std::cerr << "failed to create renderer" << std::endl;
+        std::cerr << "failed to create renderer\n" << SDL_GetError() << std::endl;
         return false;
     }
 
@@ -70,6 +78,9 @@ void Window::handkleKeyboardEvent() {
         config::mode = config::END;
     else if (state[SDL_SCANCODE_ESCAPE]) {
     }
+}
+
+void Window::clickCell(int row, int col) {
 }
 
 void Window::clear() {

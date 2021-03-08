@@ -1,10 +1,11 @@
 #include "Graph.h"
 #include "Config.h"
 
-void Graph::Graph() {
+Graph::Graph() {
     graph.resize(config::rows, std::vector<Node>(config::cols));
     adjList.resize(config::rows * config::cols);
 
+    /*
     // add nodes to graph
     int count = 0;
     for (int i = 0; i < config::rows; ++i) {
@@ -12,7 +13,7 @@ void Graph::Graph() {
             Node node(i, j, count);
             graph[i][j] = node;
         }
-    }
+    }*/
 
     // add correct edges to each node
     for (int i = 0; i < config::rows; ++i) {
@@ -21,9 +22,12 @@ void Graph::Graph() {
         }
     }
 }
+
 void Graph::reset() {
     for (int i = 0; i < config::rows; ++i) {
         for (int j = 0; j < config::cols; ++j) {
+            graph[i][j].setWeight(0);
+            graph[i][j].setState(0);
         }
     }
  }

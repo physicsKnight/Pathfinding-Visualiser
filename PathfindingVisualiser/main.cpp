@@ -9,7 +9,8 @@ int main(int argc, char** argv) {
     int width = 800;
     int height = 600;
 
-    Window window(title, width, height);
+    Graph graph
+    Window window(title, width, height, graph);
 
     while (window.isRunning()) {
         window.pollEvents();
